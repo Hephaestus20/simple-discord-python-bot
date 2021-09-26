@@ -1,7 +1,7 @@
 ## Merhabalar, Ben Hephaestus20
 Sizler için basit bir anlatım ile, Python kullanarak bot çalıştırmayı ve Komut eklemeyi gösterdim.
 
-[Buraya](https://discord.gg/qAThZUqTNN) tıklayarak discord sunucumuza katılabilirsiniz.
+[Buraya](https://discord.gg/qAThZUqTNN) tıklayarak discord sunucumuza katılabilirsiniz.\
 [Buraya](https://www.youtube.com/channel/UCqupqKWmpEB50Zqel8HSigw) tıklayarak ise youtube kanalıma bakabilirsiniz.
 
 ## Nasıl İndirilir

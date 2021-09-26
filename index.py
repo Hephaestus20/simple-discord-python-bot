@@ -50,7 +50,6 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
-    # Ignores if a command is being executed by a bot or by the bot itself
     if message.author == bot.user or message.author.bot:
         return
     await bot.process_commands(message)

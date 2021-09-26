@@ -1,13 +1,65 @@
-<h1 align="center">Hi 👋, I'm Hephaestus20</h1>
-<h3 align="center">Python ile yazılmış basit discord botu.</h3>
+## Nasıl İndirilir
+Öncelikle bazı python uzantıları eklememiz gerekiyor.
+Bunları sizler için ayarladım.
 
-<h3 align="left">Connect with me:</h3>
-<p align="left">
-<a href="https://www.youtube.com/c/hephaestus20" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/youtube.svg" alt="hephaestus20" height="30" width="40" /></a>
-<a href="https://discord.gg/qAThZUqTNN" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/discord.svg" alt="qAThZUqTNN" height="30" width="40" /></a>
-</p>
+```py
+pip install -r requirements.txt
+```
 
-<h3 align="left">Languages and Tools:</h3>
-<p align="left"> <a href="https://www.python.org" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> </p>
+## Nasıl Komut Açılır
+\
+Öncelikle klasör içerisinde bulunan "cmds"'nin içine istediğiniz bir komutu oluşturun, oluşturacağımız komut "Küfür-Engel" olsun.
+İçerisinde bazı importlar atmamız gerekecek.
 
-<p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=hephaestus20&show_icons=true&locale=en&layout=compact" alt="hephaestus20" /></p>
+```py
+import discord
+from discord.ext import commands
+import os
+import sys
+import json
+```
+Sonra "config.json" ve daha kolay düzenleyebilmemiz için "message_TR" dosyalarını aratalım.
+```py
+import discord
+from discord.ext import commands
+import os
+import sys
+import json
+
+if not os.path.isfile("config.json"):
+    sys.exit("'config.json' Bulunamıyor.")
+else:
+    with open("config.json") as file:
+        config = json.load(file)
+
+if not os.path.isfile("lang\.\message_TR.json"):
+    sys.exit("'message_TR.json' Bulunamıyor.")
+else:
+    with open("lang\.\message_TR.json", encoding='utf8') as file:
+        message_TR = json.load(file)
+```
+Artık son 1-2 hamle ile komutumuzu çalışır duruma getirelim.
+```py
+class ModerationCommands(commands.Cog):
+    def __init__(self, client):
+        self.client = client
+
+
+    @commands.command(aliases=["küfür-engel"])
+    async def küfürengel(self, ctx, *, member: discord.Member = None):
+        if not member:member=ctx.message.author
+
+        message = discord.Embed()
+        message.add_field(name=(f"{message_TR['kufurengel_titleerror']}"),value=(f"{message_TR['kufurengel_error']}"), inline=False)
+
+
+        await ctx.send(embed=message)
+
+        
+
+
+def setup(client):
+    client.add_cog(ModerationCommands(client))
+```
+
+Bu şekilde basit bir komut eklemiş olduk.
